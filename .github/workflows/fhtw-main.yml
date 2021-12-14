@@ -1,4 +1,4 @@
-name: fhtw-github-action
+name: push-to-docker-hub
 
 on: [push]
 jobs:
