@@ -1,0 +1,22 @@
+name: fhtw-github-action
+
+on: [push]
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Login
+        uses: docker/login-action@v1.10.0
+        with:
+          username: aruckner
+          password: ${{ secrets.dockerhub_password }}
+          logout: true
+      - name: Docker Build and Push
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: index.docker.io/aruckner/python-helloworld:latest
+          file: ./Dockerfile
+      
